@@ -15,7 +15,7 @@ data "aws_ami" "app_ami" {
 }
 
 data "aws_vpc" "default" {
-  default = true
+  id = "vpc-00613fdde619e4f7b"
 }
 
 resource "aws_instance" "web" {
