@@ -18,7 +18,7 @@ module "alb_tf_module" {
 #					target_id = aws_instance.web.id
 #					port = 80
 #				}
-			}
+#			}
     }
   }
 
