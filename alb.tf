@@ -4,11 +4,11 @@ module "alb_tf_module" {
   name            = "alb_tf_module"
   vpc_id          = module.vpc_tf_module.vpc_id
   subnets         = module.vpc_tf_module.public_subnets
-	security_groups = module.sg_module.security_group_id
+	security_groups = ["${module.sg_module.security_group_id}"]
 
   target_groups = {
     ex-instance = {
-      name_prefix      = "tg_tf-"
+      name_prefix      = "tg-tf-"
       protocol         = "HTTP"
       port             = 80
       target_type      = "instance"
