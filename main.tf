@@ -20,7 +20,7 @@ data "aws_ami" "app_ami" {
 
 module "vpc_tf_module" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "3.14.2"
+  version = "5.5.2"
 
   name = "vpc_tf_module"
   cidr = "10.10.0.0/16"
