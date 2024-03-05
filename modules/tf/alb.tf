@@ -2,7 +2,7 @@ module "alb_tf_module" {
   source = "terraform-aws-modules/alb/aws"
 	version = "9.7.0"
 	
-  name            = "alb-tf-module"
+  name            = "${var.environment.network_prefix}-alb-tf-module"
   vpc_id          = module.vpc_tf_module.vpc_id
   subnets         = module.vpc_tf_module.public_subnets
 	security_groups = ["${module.sg_module.security_group_id}"]

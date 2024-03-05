@@ -2,7 +2,7 @@ module "autoscaling" {
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "7.4.0"
   
-  name = "asg-tf-dev"
+  name = "${var.environment.network_prefix}-asg-tf-dev"
   min_size            = var.asg_min_size
   max_size            = var.asg_max_size
 	desired_capacity    = 1

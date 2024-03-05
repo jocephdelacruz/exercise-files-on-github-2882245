@@ -22,7 +22,7 @@ module "vpc_tf_module" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.5.2"
 
-  name = "vpc_tf_module"
+  name = "${var.environment.network_prefix}-vpc-tf-module"
   cidr = "${var.environment.network_prefix}.0.0/16"
 
   azs = ["eu-west-2a", "eu-west-2b", "eu-west-2c"]
@@ -56,14 +56,14 @@ resource "aws_instance" "web" {
   }
 
   tags = {
-    Name = "intelyse-dev-ecs"
+    Name = "${var.environment.network_prefix}-intelyse-dev-ecs"
   }
 }
 
 module "sg_module" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "5.1.1"
-  name = "tf_sg_module"
+  name = "${var.environment.network_prefix}-tf-sg-module"
   
   vpc_id = module.vpc_tf_module.vpc_id
 
