@@ -7,26 +7,22 @@ module "alb_tf_module" {
 	security_groups = ["${module.sg_module.security_group_id}"]
 
   target_groups = {
-    ex-instance = {
+    tg-target = {
       name_prefix      = "tg-tf-"
       protocol         = "HTTP"
       port             = 80
       target_type      = "instance"
 			target_id = aws_instance.web.id
-#			targets = {
-#				my_target = {
-#					target_id = aws_instance.web.id
-#					port = 80
-#				}
-#			}
     }
   }
 
   listeners = {
-    http_tcp_listener = {
+    ls-http-tcp = {
       port                 = 80
       protocol             = "HTTP"
-      target_group_index   = 0
+      forward = {
+        target_group_key = "tg-target"
+      }
     }
   }
 
