@@ -12,6 +12,7 @@ module "alb_tf_module" {
       protocol         = "HTTP"
       port             = 80
       target_type      = "instance"
+			vpc_id           = module.vpc_tf_module.vpc_id
     }
   }
 
