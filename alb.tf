@@ -28,6 +28,6 @@ module "alb_tf_module" {
   }
 
   tags = {
-    Environment = "Development"
+    Environment = var.environment.name
   }
 }

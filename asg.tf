@@ -3,8 +3,8 @@ module "autoscaling" {
   version = "7.4.0"
   
   name = "asg-tf-dev"
-  min_size            = 1
-  max_size            = 2
+  min_size            = var.asg_min_size
+  max_size            = var.asg_max_size
 	desired_capacity    = 1
 
 	vpc_zone_identifier    = module.vpc_tf_module.public_subnets

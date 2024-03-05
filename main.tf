@@ -3,7 +3,7 @@ data "aws_ami" "app_ami" {
   
   filter {
     name   = "name"
-    values = ["bitnami-tomcat-*-x86_64-hvm-ebs-nami"]
+    values = [var.ami_filter.name]
   }
 
   filter {
@@ -11,7 +11,7 @@ data "aws_ami" "app_ami" {
     values = ["hvm"]
   }
 
-  owners = ["979382823631"]  # Bitnami
+  owners = [var.ami_filter.owner]
 }
 
 #data "aws_vpc" "default" {
@@ -23,14 +23,14 @@ module "vpc_tf_module" {
   version = "5.5.2"
 
   name = "vpc_tf_module"
-  cidr = "10.10.0.0/16"
+  cidr = "${var.environment.network_prefix}.0.0/16"
 
   azs = ["eu-west-2a", "eu-west-2b", "eu-west-2c"]
-  public_subnets = ["10.10.10.0/24", "10.10.11.0/24", "10.10.12.0/24"]
+  public_subnets = ["${var.environment.network_prefix}.10.0/24", "${var.environment.network_prefix}.11.0/24", "${var.environment.network_prefix}.12.0/24"]
 
   tags = {
     Terraform = "true"
-    Environment = "dev"
+    Environment = var.environment.name
   }
 }
 
