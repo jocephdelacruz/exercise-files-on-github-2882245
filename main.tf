@@ -47,6 +47,7 @@ resource "aws_instance" "web" {
   ami                    = data.aws_ami.app_ami.id
   instance_type          = var.instance_type
   vpc_security_group_ids = [module.sg_module.security_group_id]
+  subnet_id              = module.vpc_tf_module.public_subnets[0]
   key_name               = data.aws_key_pair.tf_kp_sgdevops.key_name
   
   root_block_device {
