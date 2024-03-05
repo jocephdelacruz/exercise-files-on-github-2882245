@@ -11,9 +11,9 @@ module "alb_tf_module" {
     ls-http-tcp = {
       port                 = 80
       protocol             = "HTTP"
-#      forward = {
-#        target_group_key = "tg-tf-http"
-#      }
+      forward = {
+        target_group_key = "tg-tf-http"
+      }
     }
   }
 
@@ -23,6 +23,7 @@ module "alb_tf_module" {
       protocol         = "HTTP"
       port             = 80
       target_type      = "instance"
+			target_id        = aws_instance.web.id
     }
   }
 
