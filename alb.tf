@@ -11,9 +11,9 @@ module "alb_tf_module" {
     ls-http-tcp = {
       port                 = 80
       protocol             = "HTTP"
-      forward = {
-        target_group_key = "tg-tf-http"
-      }
+#      forward = {
+#        target_group_key = "tg-tf-http"
+#      }
     }
   }
 
