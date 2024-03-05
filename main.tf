@@ -30,7 +30,7 @@ data "aws_key_pair" "tf_kp_sgdevops" {
 resource "aws_instance" "web" {
   ami                    = data.aws_ami.app_ami.id
   instance_type          = var.instance_type
-  vpc_security_group_ids = [aws_security_group.tf_sg_default.id]
+  vpc_security_group_ids = [module.sg_module.security_group_id]
   subnet_id              = data.aws_subnet.snt_2a_pub.id
   key_name               = data.aws_key_pair.tf_kp_sgdevops.key_name
   
@@ -42,6 +42,20 @@ resource "aws_instance" "web" {
   tags = {
     Name = "intelyse-dev-ecs"
   }
+}
+
+module "sg_module" {
+  source  = "terraform-aws-modules/security-group/aws"
+  version = "5.1.1"
+  name = "tf_sg_module"
+  
+  vpc_id = data.aws_vpc.default.id
+
+  ingress_rules = ["http-80-tcp", "https-443-tcp"]
+  ingress_cidr_blocks = ["0.0.0.0/0"]
+
+  egress_rules = ["all-all"]
+  egress_cidr_blocks = ["0.0.0.0/0"]
 }
 
 resource "aws_security_group" "tf_sg_default" {
