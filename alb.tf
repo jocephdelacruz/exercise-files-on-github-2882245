@@ -12,13 +12,13 @@ module "alb_tf_module" {
       port                 = 80
       protocol             = "HTTP"
       forward = {
-        target_group_key = "tg-target"
+        target_group_key = "tg-tf-http"
       }
     }
   }
 
   target_groups = {
-    tg-target = {
+    tg-tf-http = {
       name_prefix      = "tg-tf-"
       protocol         = "HTTP"
       port             = 80
