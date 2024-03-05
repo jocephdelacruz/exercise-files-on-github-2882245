@@ -28,5 +28,5 @@ module "autoscaling" {
     }
   ]
 
-	target_group_arns   = module.alb_tf_module.target_group_arns
+	target_group_arns   = module.alb_tf_module.target_groups
 }
