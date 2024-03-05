@@ -28,8 +28,6 @@ module "vpc_tf_module" {
   azs = ["eu-west-2a", "eu-west-2b", "eu-west-2c"]
   public_subnets = ["10.10.10.0/24", "10.10.11.0/24", "10.10.12.0/24"]
 
-  enable_nat_gateway = true
-
   tags = {
     Terraform = "true"
     Environment = "dev"
